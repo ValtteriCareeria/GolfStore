@@ -1,0 +1,125 @@
+.cart-page {
+  padding: 2rem;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  min-height: 80vh;
+  color: #fff;
+  border-radius: 10px;
+}
+
+.cart-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 0 8px rgba(0, 255, 200, 0.6);
+}
+
+.empty-cart {
+  text-align: center;
+  font-style: italic;
+  margin-top: 2rem;
+  color: #fff;
+}
+
+.modern-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+  background: linear-gradient(135deg, #2c5364, #203a43, #203a43);
+}
+
+.modern-table th, .modern-table td {
+  padding: 12px 15px;
+  text-align: center;
+  color: #fff; /* varmistaa valkoisen tekstin */
+}
+
+.modern-table thead {
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+}
+
+.cart-row {
+  background: rgba(255,255,255,0.05);
+  border-radius: 10px;
+  transition: transform 0.3s ease, opacity 0.3s ease, background 0.3s ease;
+  animation: slideIn 0.4s forwards;
+}
+
+/* POISTA valkoisen taustan hoverista */
+.cart-row:hover {
+  background: rgba(255,255,255,0.1); /* kevyesti korostaa, mutta ei valkoista */
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.quantity-input {
+  width: 60px;
+  border-radius: 5px;
+  border: none;
+  text-align: center;
+  padding: 5px;
+}
+
+.remove-btn {
+  background: #ff4c4c;
+  border: none;
+  border-radius: 50%;
+  padding: 5px 10px;
+  color: #fff;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.remove-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 8px #ff4c4c;
+}
+
+.cart-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.checkout-btn {
+  flex: 1;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  border-radius: 25px;
+  padding: 12px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.checkout-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 140, 0, 0.8);
+}
+
+.back-btn {
+  flex: 1;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  border-radius: 25px;
+  padding: 12px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.back-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(108,117,125,0.8);
+}

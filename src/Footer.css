@@ -1,0 +1,105 @@
+.footer-gradient {
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: #fff;
+  padding: 50px 20px 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+.footer-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-section {
+  flex: 1 1 220px;
+  margin: 10px;
+}
+
+.footer-section h4 {
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  color: #f8f8f8;
+}
+
+.footer-section p, 
+.footer-links li {
+  margin: 5px 0;
+  font-size: 0.9rem;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li a {
+  color: #ccc;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer-links li a:hover {
+  color: #ffd700;
+  text-shadow: 0 0 5px #ffd700;
+}
+
+/* Sosiaalisen median ikonit */
+.social-icons {
+  display: flex;
+  gap: 10px;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1.3rem;
+  transition: all 0.3s ease;
+}
+
+.social-btn.facebook { background: #3b5998; }
+.social-btn.instagram { background: #e4405f; }
+.social-btn.twitter { background: #1da1f2; }
+.social-btn.linkedin { background: #0077b5; }
+
+.social-btn:hover {
+  transform: scale(1.3) rotate(10deg);
+  filter: drop-shadow(0 0 10px #fff);
+  cursor: pointer;
+}
+
+/* Maksukorttien ikonit */
+.payment-icons {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.payment-btn {
+  font-size: 2rem;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  cursor: pointer;
+}
+
+.payment-btn:hover {
+  transform: scale(1.3) rotate(-5deg);
+  filter: drop-shadow(0 0 8px #ffd700);
+}
+
+/* Footer bottom */
+.footer-bottom {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 0.8rem;
+  border-top: 1px solid rgba(255,255,255,0.3);
+  padding-top: 15px;
+}

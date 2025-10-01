@@ -1,0 +1,140 @@
+/* Sivun tausta */
+.myorders-wrapper {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 20px;
+  color: #fff;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
+
+/* Header */
+.myorders-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.myorders-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* Ei tilauksia */
+.myorders-no-orders {
+  margin: 20px 0;
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+/* Korttilista */
+.myorders-list {
+  list-style: none;
+  padding: 0;
+}
+
+/* Tilauksen kortti */
+.myorders-card {
+  background: rgba(255, 255, 255, 0.08); /* läpinäkyvä valkoinen, erottuu tummasta */
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 15px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
+  cursor: pointer;
+}
+
+.myorders-card:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.15); /* hoverissa kirkkaampi */
+  box-shadow: 0 4px 14px rgba(0, 255, 200, 0.25);
+}
+
+.myorders-summary {
+  font-size: 1.1rem;
+}
+
+/* Status-värit */
+.myorders-status {
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+.myorders-status.pending {
+  color: #ffc107;
+}
+.myorders-status.shipped {
+  color: #17a2b8;
+}
+.myorders-status.delivered {
+  color: #28a745;
+}
+.myorders-status.cancelled {
+  color: #dc3545;
+}
+
+/* Tilauksen lisätiedot */
+.myorders-details {
+  margin-top: 12px;
+  padding-left: 10px;
+  border-left: 3px solid #00ffc8;
+}
+
+.myorders-details h4 {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-size: 1rem;
+  color: #00ffc8;
+}
+
+.myorders-product-link {
+  color: #00ffc8;
+  text-decoration: none;
+}
+.myorders-product-link:hover {
+  text-decoration: underline;
+}
+
+/* Nappulat */
+.myorders-btn {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 12px;
+  padding: 8px 16px;
+  font-weight: 600;
+  color: white;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
+}
+.myorders-btn:hover {
+  transform: scale(1.05);
+  background: rgba(0, 255, 200, 0.15);
+  box-shadow: 0 0 12px rgba(0, 255, 200, 0.6);
+}
+.myorders-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.myorders-btn-small {
+  padding: 6px 12px;
+  font-size: 0.9rem;
+}
+
+.myorders-btn-back {
+  margin-left: auto;
+}
+
+/* Sivunvaihto */
+.myorders-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25px;
+  gap: 15px;
+}
+.myorders-page-info {
+  font-size: 1rem;
+}

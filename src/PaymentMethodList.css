@@ -1,0 +1,119 @@
+.paymentmethods-container {
+  min-height: 100vh;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: #fff;
+  text-align: center;
+}
+
+.paymentmethods-title {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #ffd700;
+  text-shadow: 0 0 8px rgba(0,0,0,0.5);
+}
+
+.paymentmethods-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.paymentmethods-input {
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  min-width: 200px;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.paymentmethods-input:focus {
+  background: rgba(255,255,255,0.2);
+  box-shadow: 0 0 8px rgba(255,255,255,0.4);
+}
+
+.paymentmethods-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #36d1dc, #5b86e5);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.paymentmethods-btn:hover {
+  background: linear-gradient(135deg, #5b86e5, #36d1dc);
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(255,255,255,0.4);
+}
+
+.paymentmethods-btn-back {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #ff512f, #dd2476);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.paymentmethods-btn-back:hover {
+  background: linear-gradient(135deg, #ff9966, #ff5e62);
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(255,150,100,0.7);
+}
+
+.paymentmethods-table {
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto 30px;
+  border-collapse: collapse;
+  background: rgba(255,255,255,0.08);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.paymentmethods-table th,
+.paymentmethods-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+.paymentmethods-table th {
+  background: rgba(255,255,255,0.12);
+  color: #ffd700;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.paymentmethods-table tr:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+.paymentmethods-btn-delete {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #ff4b2b, #ff416c);
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.paymentmethods-btn-delete:hover {
+  background: linear-gradient(135deg, #ff6a00, #ee0979);
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(255,100,100,0.7);
+}

@@ -1,0 +1,139 @@
+.orders-container {
+  min-height: 100vh;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: #fff;
+  text-align: center;
+}
+
+.orders-title {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #ffd700;
+  text-shadow: 0 0 8px rgba(0,0,0,0.5);
+}
+
+.orders-actions {
+  margin-bottom: 25px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.orders-btn,
+.orders-btn-back {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.orders-btn {
+  background: linear-gradient(135deg, #36d1dc, #5b86e5);
+  color: #fff;
+}
+
+.orders-btn:hover {
+  background: linear-gradient(135deg, #5b86e5, #36d1dc);
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(255,255,255,0.4);
+}
+
+.orders-btn-back {
+  background: linear-gradient(135deg, #ff512f, #dd2476);
+  color: #fff;
+}
+
+.orders-btn-back:hover {
+  background: linear-gradient(135deg, #ff9966, #ff5e62);
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(255,150,100,0.7);
+}
+
+.orders-table {
+  width: 90%;
+  max-width: 1000px;
+  margin: 0 auto 30px;
+  border-collapse: collapse;
+  background: rgba(255,255,255,0.08);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.orders-table th,
+.orders-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+.orders-table th {
+  background: rgba(255,255,255,0.12);
+  color: #ffd700;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.orders-table tr:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+.orders-btn-edit,
+.orders-btn-delete {
+  padding: 6px 14px;
+  margin: 0 4px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.orders-btn-edit {
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  color: #fff;
+}
+
+.orders-btn-edit:hover {
+  background: linear-gradient(135deg, #0072ff, #00c6ff);
+  transform: scale(1.05);
+}
+
+.orders-btn-delete {
+  background: linear-gradient(135deg, #ff4b2b, #ff416c);
+  color: #fff;
+}
+
+.orders-btn-delete:hover {
+  background: linear-gradient(135deg, #ff6a00, #ee0979);
+  transform: scale(1.05);
+}
+
+.orders-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.orders-pagination button {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, #36d1dc, #5b86e5);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.orders-pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.orders-pagination button:hover:not(:disabled) {
+  transform: scale(1.05);
+}

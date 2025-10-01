@@ -1,0 +1,163 @@
+/* Offcanvas */
+.mycart-offcanvas {
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: #fff;
+}
+
+.mycart-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #fff !important; 
+  text-shadow: 0 0 8px rgba(0, 255, 200, 0.6);  
+}
+
+/* Tyhjä viesti */
+.mycart-empty {
+  text-align: center;
+  font-style: italic;
+  color: #fff;
+}
+
+/* Lista */
+.mycart-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mycart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.mycart-item:hover {
+  background: rgba(255,255,255,0.05);
+}
+
+.mycart-item-info strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #fff;
+}
+
+.mycart-item-info span {
+  color: #fff;
+}
+
+.mycart-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Input */
+.mycart-quantity {
+  width: 60px;
+  border-radius: 5px;
+  border: none;
+  text-align: center;
+}
+
+/* Poistonappi */
+.mycart-remove {
+  background: rgba(255, 76, 76, 0.2);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 76, 76, 0.4);
+  border-radius: 50%;
+  padding: 6px 10px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mycart-remove:hover {
+  background: rgba(255, 76, 76, 0.3);
+  border-color: #ff4c4c;
+  transform: scale(1.2) rotate(10deg);
+  box-shadow: 0 0 8px rgba(255, 76, 76, 0.8);
+}
+
+/* Yhteensä */
+.mycart-total {
+  margin-top: 15px;
+  text-align: right;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+/* Läpinäkyvät sumuiset napit */
+.mycart-btn {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  font-weight: bold;
+  padding: 12px 0;
+  margin-top: 15px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mycart-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #fff;
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+/* Vihreä tilaustapahtuma-nappi */
+.mycart-order-btn {
+  background: rgba(40, 167, 69, 0.2);
+  border-color: #28a745;
+}
+
+.mycart-order-btn:hover {
+  background: rgba(40, 167, 69, 0.3);
+  border-color: #28a745;
+  box-shadow: 0 0 15px rgba(40, 167, 69, 0.6);
+}
+
+/* Ostoskorin avausnappi */
+.mycart-toggle {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255,255,255,0.3);
+  color: #fff;
+  border-radius: 50%;
+  padding: 8px 12px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.mycart-toggle:hover {
+  background: rgba(255,255,255,0.2);
+  border-color: #fff;
+}
+
+/* Badge */
+.mycart-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #ff4c4c;
+  color: #fff;
+  border-radius: 50%;
+  padding: 4px 8px;
+  font-size: 0.8rem;
+}
+
+.mycart-badge.animate {
+  animation: bounce 0.3s;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+}

@@ -1,0 +1,150 @@
+.deliveryoptions-container {
+  min-height: 100vh;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: #fff;
+  text-align: center;
+}
+
+.deliveryoptions-title {
+  font-size: 2rem;
+  margin-bottom: 25px;
+  color: #ffd700;
+  text-shadow: 0 0 8px rgba(0,0,0,0.6);
+}
+
+.deliveryoptions-actions {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.deliveryoptions-btn,
+.deliveryoptions-btn-back {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #fff;
+}
+
+.deliveryoptions-btn {
+  background: linear-gradient(135deg, #36d1dc, #5b86e5);
+}
+
+.deliveryoptions-btn:hover {
+  background: linear-gradient(135deg, #5b86e5, #36d1dc);
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(255,255,255,0.4);
+}
+
+.deliveryoptions-btn-back {
+  background: linear-gradient(135deg, #ff512f, #dd2476);
+}
+
+.deliveryoptions-btn-back:hover {
+  background: linear-gradient(135deg, #ff9966, #ff5e62);
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(255,150,100,0.7);
+}
+
+/* Table */
+.deliveryoptions-table {
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto;
+  border-collapse: collapse;
+  background: rgba(255,255,255,0.08);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.deliveryoptions-table th,
+.deliveryoptions-table td {
+  padding: 14px 18px;
+  text-align: left;
+  color: #fff;
+}
+
+.deliveryoptions-table th {
+  background: rgba(255,255,255,0.15);
+  font-weight: bold;
+}
+
+.deliveryoptions-table tr:nth-child(even) {
+  background: rgba(255,255,255,0.05);
+}
+
+.deliveryoptions-table tr:hover {
+  background: rgba(255,255,255,0.12);
+}
+
+/* Buttons in table */
+.deliveryoptions-btn-edit,
+.deliveryoptions-btn-delete {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #fff;
+  margin-right: 10px;
+}
+
+.deliveryoptions-btn-edit {
+  background: linear-gradient(135deg, #36d1dc, #5b86e5);
+}
+
+.deliveryoptions-btn-edit:hover {
+  background: linear-gradient(135deg, #5b86e5, #36d1dc);
+  transform: scale(1.05);
+}
+
+.deliveryoptions-btn-delete {
+  background: linear-gradient(135deg, #ff4b2b, #ff416c);
+}
+
+.deliveryoptions-btn-delete:hover {
+  background: linear-gradient(135deg, #ff6a00, #ee0979);
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(255,100,100,0.7);
+}
+
+.deliveryoptions-empty {
+  text-align: center;
+  padding: 20px;
+  color: #ddd;
+  font-style: italic;
+}
+
+.deliveryoptions-loading {
+  text-align: center;
+  color: #fff;
+}
+
+.deliveryoptions-error {
+  text-align: center;
+  color: #ff6a6a;
+  font-weight: bold;
+}
+/* Input-kentät */
+.deliveryoptions-input {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+  outline: none;
+  color: #333;
+  background: #fff;
+  width: 220px;
+  transition: all 0.3s ease;
+}
+
+.deliveryoptions-input:focus {
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+}

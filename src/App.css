@@ -1,42 +1,640 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+:root {
+  /* Poista tämä, koska se keskittää vain tekstiä, ei elementtejä. */
+  /* text-align: center; */
+  width: 100%;
+  --primary-color: #4a90e2; /* Moderni sininen */
+  --secondary-color: #f5a623; /* Oranssi korostus */
+  --dark-color: #343a40; /* Tumma navigaatiopalkki */
+  --light-color: #f8f9fa; /* Vaalea tausta */
+  --font-family-primary: 'Arial', sans-serif;
+}
+
+/* TÄRKEÄÄ: Määritä html ja body koko näytön kokoisiksi */
+html, body, #root {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  
+}
+
+/*
+* Keskittää .App-kontainerin vaakasuunnassa
+* ja varmistaa pystysuuntaisen asettelun.
+*/
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  margin: 0 auto; /* TÄMÄ ON TÄRKEÄ MUUTOS! Keskittää koko sovelluksen. */
+}
+
+/* Navigaatiopalkin ja pääsisällön keskittäminen */
+.container-fluid {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.shadow {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.fw-bold {
+  font-weight: 700 !important;
+}
+
+.fs-4 {
+  font-size: 1.5rem !important;
+}
+
+.btn-add {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-add:hover {
+  background-color: #3b7ad1;
+}
+
+/* Yksinkertainen tuotelistaus ja haku */
+.product-page {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+.product-page h2 {
+ flex: 1 1 100%;
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #fff;
+  text-shadow: 0 0 8px rgba(0, 255, 200, 0.6);
+}
+.product-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  padding: 8px 12px;
+  width: 300px;
+}
+
+.product-item {
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.edit-title {
   text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  max-width: 500px;
+  margin: 0 auto;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.edit-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.btn-red {
+  background-color: #e63946;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.btn-red:hover {
+  background-color: #d62839;
+}
+
+
+
+.btn-black:hover {
+  background-color: #333;
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto; /* Responsiivisuus: scrollbar mobiilissa */
+  margin-top: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.btn {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.btn-danger {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #c0392b;
+}
+
+.btn-primary {
+  background-color: #3498db;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #217dbb;
+}
+
+.search-bar {
+  display: flex;
+  gap: 10px;
+  margin: 15px 0;
+  flex-wrap: wrap; /* responsiivisuus pienille näytöille */
+}
+
+.search-input {
+  flex: 1;
+  min-width: 200px;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.2s ease-in-out;
+}
+
+.search-input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.4);
+}
+
+.clear-btn {
+  background: #f44336;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-size: 14px;
+}
+
+.clear-btn:hover {
+  background: #d32f2f;
+  transform: scale(1.05);
+}
+
+.order-form {
+  background: linear-gradient(135deg, #203a43, #2c5364, #0f2027);
+  padding: 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.order-form input, .order-form select {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+}
+
+.submit-btn {
+  flex: 1;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  border-radius: 25px;
+  padding: 12px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.submit-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255,140,0,0.7);
+}
+
+.back-btn {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+
+.back-btn:hover {
+  background: rgba(255,255,255,0.2);
+  transform: scale(1.02);
+}
+
+.register-container {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.register-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.register-info {
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  padding: 2rem;
+  border-radius: 15px;
+  color: #fff;
+}
+
+.register-info h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 8px rgba(0, 255, 200, 0.6);
+}
+
+.register-info ul {
+  list-style: disc inside;
+  margin: 1rem 0;
+}
+
+.register-image {
+  margin-top: 1rem;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.register-form {
+  background: linear-gradient(135deg, #203a43, #2c5364, #0f2027);
+  padding: 2rem;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  color: #fff;
+}
+
+.register-form h3 {
+  text-align: center;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 8px rgba(0, 255, 200, 0.6);
+}
+
+.register-form input {
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.register-form input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.register-form input:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.register-form input:focus {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+  transform: scale(1.02);
+}
+
+.error-text {
+  color: #ff4c4c;
+  font-size: 0.9rem;
+  margin-top: -0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.register-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.btn-submit {
+  flex: 1;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  border-radius: 25px;
+  padding: 12px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.btn-submit:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255,140,0,0.7);
+}
+
+.btn-back {
+  flex: 1;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  border-radius: 25px;
+  padding: 12px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.btn-back:hover {
+  background: rgba(255,255,255,0.2);
+  transform: scale(1.05) translateY(-1px);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+/* Navbar kokonaisuus */
+.navbar-custom {
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  padding: 0.8rem 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.navbar-custom .navbar-brand {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #fff !important;
+  transition: color 0.3s;
+}
+
+.navbar-custom .navbar-brand:hover {
+  color: #ff512f;
+  transform: scale(1.05);
+}
+
+.navbar-custom .nav-link {
+  color: #fff !important;
+  font-weight: 500;
+  margin-right: 1rem;
+  transition: color 0.3s, transform 0.3s;
+  text-shadow: 0 0 8px rgba(0, 255, 200, 0.6);
+}
+
+.navbar-custom .nav-link:hover {
+  color:#f5a623;
+  transform: scale(1.05);
+  text-decoration: underline;
+}
+
+
+/* Hamburger-menu väri */
+.navbar-toggler {
+  border-color: rgba(255,255,255,0.5);
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* Responsiivinen dropdown / collapse */
+.navbar-collapse {
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  border-radius: 0 0 10px 10px;
+}
+
+.profile-page {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  border-radius: 15px;
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.profile-page h2 {
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #fff;
+  text-shadow: 0 0 8px rgba(0, 255, 200, 0.6);
+}
+
+.profile-page p {
+  font-size: 1.1rem;
+  margin: 0.5rem 0;
+  line-height: 1.5;
+  
+  
+}
+
+.button-group1 {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.button-group1 .btn {
+  padding: 0.6rem 1.5rem;
+  font-weight: bold;
+  border-radius: 25px;
+  border: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.button-group1 .btn-primary {
+  background: linear-gradient(135deg, #ffd700, #ff8c00);
+  color: #fff;
+}
+
+.button-group1 .btn-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 140, 0, 0.8);
+}
+
+.button-group1 .btn-secondary {
+  background: linear-gradient(135deg, #555, #222);
+  color: #fff;
+}
+
+.button-group1 .btn-secondary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+}
+
+/* Korttimainen tyyli käyttäjätiedoille */
+.profile-page p strong {
+  display: inline-block;
+  width: 140px;
+  color: #e9e8e4;
+  
+}
+/* Taustakontaineri */
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* kaikki muu näkyy päällä */
+    overflow: hidden;
+}
+
+/* Fadeavat gradienttitasot */
+.background-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+}
+
+.background-layer.active {
+    opacity: 1;
+}
+
+/* Liikkuva valoefekti */
+.floating-light {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: floatLight 15s infinite alternate ease-in-out;
+}
+
+@keyframes floatLight {
+    0% { transform: translate(-50%, -50%) translateX(0px) translateY(0px); }
+    25% { transform: translate(-50%, -50%) translateX(100px) translateY(-50px); }
+    50% { transform: translate(-50%, -50%) translateX(-100px) translateY(50px); }
+    75% { transform: translate(-50%, -50%) translateX(50px) translateY(-100px); }
+    100% { transform: translate(-50%, -50%) translateX(0px) translateY(0px); }
+}
+/* Hiukkaset / tähtisade */
+.particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: rgb(251, 252, 252);
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: floatParticle linear infinite;
+}
+
+/* Luo satunnaisia animaatioita jokaiselle hiukkaselle */
+.particle:nth-child(odd) {
+  animation-duration: 10s;
+  animation-delay: 0s;
+}
+.particle:nth-child(even) {
+  animation-duration: 15s;
+  animation-delay: 5s;
+}
+
+@keyframes floatParticle {
+  0% {
+    transform: translate3d(
+      calc(100vw * var(--rand-x)),
+      calc(100vh * var(--rand-y)),
+      0
+    );
+    opacity: 0.5;
   }
-  to {
-    transform: rotate(360deg);
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(
+      calc(100vw * var(--rand-x-end)),
+      calc(100vh * var(--rand-y-end)),
+      0
+    );
+    opacity: 0;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}

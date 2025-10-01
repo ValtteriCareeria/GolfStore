@@ -1,0 +1,126 @@
+.modelmanagement-container {
+  min-height: 100vh;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: #fff;
+  text-align: center;
+}
+
+.modelmanagement-title {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #ffd700;
+  text-shadow: 0 0 8px rgba(0,0,0,0.5);
+}
+
+.modelmanagement-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.modelmanagement-input,
+.modelmanagement-select {
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  min-width: 200px;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.modelmanagement-input:focus,
+.modelmanagement-select:focus {
+  background: rgba(255,255,255,0.2);
+  box-shadow: 0 0 8px rgba(255,255,255,0.4);
+}
+
+.modelmanagement-select option {
+  background: #283048;
+  color: #fff;
+}
+
+.modelmanagement-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #36d1dc, #5b86e5);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.modelmanagement-btn:hover {
+  background: linear-gradient(135deg, #5b86e5, #36d1dc);
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(255,255,255,0.4);
+}
+
+.modelmanagement-btn-back {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #ff512f, #dd2476);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.modelmanagement-btn-back:hover {
+  background: linear-gradient(135deg, #ff9966, #ff5e62);
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(255,150,100,0.7);
+}
+
+.modelmanagement-list {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.modelmanagement-item {
+  background: rgba(255,255,255,0.08);
+  margin-bottom: 12px;
+  padding: 12px 20px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.3s ease;
+}
+
+.modelmanagement-item:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+.modelmanagement-btn-delete {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #ff4b2b, #ff416c);
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.modelmanagement-btn-delete:hover {
+  background: linear-gradient(135deg, #ff6a00, #ee0979);
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(255,100,100,0.7);
+}
+
+.modelmanagement-empty {
+  color: #eee;
+  font-style: italic;
+  text-align: center;
+}

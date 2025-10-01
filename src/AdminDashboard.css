@@ -1,0 +1,89 @@
+/* Yleinen tausta */
+.admin-dashboard {
+  min-height: 100vh;
+  padding: 40px 20px;
+  
+  color: #fff;
+  text-align: center;
+}
+
+/* Otsikko */
+.admin-title {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(255,255,255,0.3);
+}
+
+/* Korttien asettelu */
+.admin-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Yksittäinen kortti */
+.admin-card {
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  transition: all 0.3s ease;
+}
+
+.admin-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+}
+
+.admin-card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #f1f0eb;
+}
+
+.admin-card p {
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+  color: #ddd;
+}
+
+/* Nappi */
+.admin-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #68d1df, #1e6d7a);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.admin-btn:hover {
+  background: linear-gradient(135deg, #68d1df, #1e6d7a);
+  box-shadow: 0 0 15px rgba(42, 111, 156, 0.8);
+  transform: scale(1.05);
+}
+
+/* Ei pääsyä näkymä */
+.admin-noaccess {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #1c1c1c;
+  color: #fff;
+  text-align: center;
+}
+
+.admin-noaccess h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #ff4b5c;
+}

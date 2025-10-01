@@ -1,0 +1,136 @@
+.page-container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #fff;
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 40px 25px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
+  line-height: 1.6;
+}
+
+.page-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 25px;
+  text-align: center;
+  text-shadow: 0 0 8px rgba(0, 255, 200, 0.6);
+}
+
+.page-subtitle {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  color: #00ffc3;
+}
+
+.page-text {
+  font-size: 1rem;
+  margin-bottom: 15px;
+}
+
+.page-list {
+  list-style: disc;
+  margin: 10px 0 20px 25px;
+  font-size: 1rem;
+}
+
+.page-list li {
+  margin-bottom: 8px;
+}
+
+/* Contact Form */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 10px;
+  padding: 12px 15px;
+  color: #fff;
+  font-size: 1rem;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #00ffc3;
+  box-shadow: 0 0 10px rgba(0,255,200,0.4);
+}
+
+.edit-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-start;
+  margin-top: 15px;
+}
+
+.btn-red {
+  background: linear-gradient(135deg, #68d1df, #1e6d7a);
+  border: none;
+  border-radius: 10px;
+  padding: 10px 25px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-red:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px #1e6d7a;
+}
+
+.btn-black {
+  background: rgba(30,30,30,0.8);
+  border: none;
+  border-radius: 10px;
+  padding: 10px 25px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-black:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(255,255,255,0.2);
+}
+
+.delivery-list {
+  list-style: none;
+  padding: 0;
+  margin: 30px 0;
+}
+
+.delivery-list li {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 10px;
+  padding: 12px 18px;
+  margin-bottom: 15px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.delivery-list li:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 12px rgba(0,255,200,0.3);
+}
+
+.delivery-logo {
+  width: 60px;
+  height: auto;
+  flex-shrink: 0;
+}
