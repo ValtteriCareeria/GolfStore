@@ -48,7 +48,7 @@ const ProductDetails = ({ cart, setCart, setMessage, setIsPositive, setShowMessa
           {product.imageUrl ? (
             <img src={product.imageUrl} alt={product.title} className="productdetails-image" />
           ) : (
-            <div className="productdetails-image-placeholder">Ei kuvaa</div>
+            <div className="productdetails-image-placeholder">📦</div>
           )}
         </div>
 

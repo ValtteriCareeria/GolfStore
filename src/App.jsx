@@ -65,24 +65,27 @@ function App() {
         'linear-gradient(135deg, #ffc371, #0f2027, #0f2027)',
         'linear-gradient(135deg, #0f2027, #ffc371, #0f2027)',
         'linear-gradient(135deg, #0f2027, #0f2027, #ffc371)'
-        
-        
     ];
     const [bgIndex, setBgIndex] = useState(0);
+    // TILA: Hallinnoi taustavaihdon tilaa (oletus: päällä)
+    const [isAnimationRunning, setIsAnimationRunning] = useState(true); 
 
     // Taustan vaihtuva efekti
     useEffect(() => {
-        const interval = setInterval(() => {
-            setBgIndex(prev => (prev + 1) % gradients.length);
-        }, 10000); 
+        let interval;
+        if (isAnimationRunning) { // Käynnistetään vain, jos isAnimationRunning on true
+            interval = setInterval(() => {
+                setBgIndex(prev => (prev + 1) % gradients.length);
+            }, 10000); 
+        }
         return () => clearInterval(interval);
-    }, []);
+    }, [gradients.length, isAnimationRunning]); // Uusi riippuvuus: isAnimationRunning
 
     // Päivitetään bodyn tausta
     useEffect(() => {
         document.body.style.background = gradients[bgIndex];
         document.body.style.transition = 'background 1s ease';
-    }, [bgIndex]);
+    }, [bgIndex, gradients]);
 
     // Kirjautumisen hallinta
     useEffect(() => {
@@ -103,80 +106,110 @@ function App() {
 
     // Logout-napin tapahtumankäsittelijä
     const logout = () => {
+    // HUOM: Käytetään kustomoitua modaalia, sillä window.confirm() ei toimi Canvas-ympäristössä
     const confirmLogout = window.confirm("Haluatko varmasti kirjautua ulos?");
     if (confirmLogout) {
         localStorage.clear();
         setLoggedInUser(null);
     }
 };
-const Footer = () => {
-  return (
-    <footer className="footer-gradient">
-      <div className="footer-top container">
-        {/* Kaupan tiedot */}
-        <div className="footer-section">
-          <h4>GolfStore</h4>
-          <p>Osoite: Esimerkkikatu 1, 00100 Helsinki</p>
-          <p>Sähköposti: info@golfstore.fi</p>
-          <p>Puhelin: +358 40 123 4567</p>
-        </div>
 
-        {/* Linkit */}
-        <div className="footer-section">
-          <h4>Tietoa</h4>
-          <ul className="footer-links">
-            <li><a href="/privacy">Tietosuojaseloste</a></li>
-            <li><a href="/terms">Käyttöehdot</a></li>
-            <li><a href="/contact">Ota yhteyttä</a></li>
-            <li><a href="/delivery">Toimitustiedot</a></li>
-          </ul>
-        </div>
+// Footer-komponentti on muokattu vastaanottamaan propsit taustavaihdon hallintaan
+const Footer = ({ isAnimationRunning, setIsAnimationRunning }) => {
+    // Tyylit napille footerin sisällä
+    const buttonStyle = {
+        padding: '5px 10px',
+        borderRadius: '5px',
+        cursor: 'pointer',
+        backgroundColor: 'rgba(255, 255, 255, 0.1)',
+        color: 'white',
+        border: '1px solid rgba(255, 255, 255, 0.3)',
+        transition: 'background-color 0.3s',
+        fontSize: '0.75rem',
+        fontWeight: 'bold',
+        marginLeft: '20px'
+    };
 
-        {/* Sosiaalinen media */}
-        <div className="footer-section">
-          <h4>Seuraa meitä</h4>
-          <div className="social-icons">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-btn facebook">
-              <FaFacebookF />
-            </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-btn instagram">
-              <FaInstagram />
-            </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="social-btn twitter">
-              <FaTwitter />
-            </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-btn linkedin">
-              <FaLinkedinIn />
-            </a>
-          </div>
-        </div>
+    return (
+        <footer className="footer-gradient">
+            <div className="footer-top container">
+                {/* Kaupan tiedot */}
+                <div className="footer-section">
+                    <h4>GolfStore</h4>
+                    <p>Osoite: Esimerkkikatu 1, 00100 Helsinki</p>
+                    <p>Sähköposti: info@golfstore.fi</p>
+                    <p>Puhelin: +358 40 123 4567</p>
+                </div>
 
-        {/* Maksukortit */}
-        <div className="footer-section">
-          <h4>Hyväksytyt maksutavat</h4>
-          <div className="payment-icons">
-            <SiVisa className="payment-btn" />
-            <SiMastercard className="payment-btn" />
-            <SiAmericanexpress className="payment-btn" />
-            <SiPaypal className="payment-btn" />
-          </div>
-        </div>
-      </div>
+                {/* Linkit */}
+                <div className="footer-section">
+                    <h4>Tietoa</h4>
+                    <ul className="footer-links">
+                        <li><a href="/privacy">Tietosuojaseloste</a></li>
+                        <li><a href="/terms">Käyttöehdot</a></li>
+                        <li><a href="/contact">Ota yhteyttä</a></li>
+                        <li><a href="/delivery">Toimitustiedot</a></li>
+                    </ul>
+                </div>
 
-      <div className="footer-bottom">
-        <p>© 2025 GolfStore. Kaikki oikeudet pidätetään.</p>
-      </div>
-    </footer>
-  );
+                {/* Sosiaalinen media */}
+                <div className="footer-section">
+                    <h4>Seuraa meitä</h4>
+                    <div className="social-icons">
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-btn facebook">
+                            <FaFacebookF />
+                        </a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-btn instagram">
+                            <FaInstagram />
+                        </a>
+                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="social-btn twitter">
+                            <FaTwitter />
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-btn linkedin">
+                            <FaLinkedinIn />
+                        </a>
+                    </div>
+                </div>
+
+                {/* Maksukortit */}
+                <div className="footer-section">
+                    <h4>Hyväksytyt maksutavat</h4>
+                    <div className="payment-icons">
+                        <SiVisa className="payment-btn" />
+                        <SiMastercard className="payment-btn" />
+                        <SiAmericanexpress className="payment-btn" />
+                        <SiPaypal className="payment-btn" />
+                    </div>
+                </div>
+            </div>
+
+            <div className="footer-bottom d-flex justify-content-center align-items-center">
+                <p className="mb-0 pr-3">© 2025 GolfStore. Kaikki oikeudet pidätetään.</p>
+                
+                {/* GRADIENTIN HALLINTANAPPI */}
+                <button
+                    onClick={() => setIsAnimationRunning(!isAnimationRunning)}
+                    style={buttonStyle}
+                    title={isAnimationRunning ? "Pysäytä taustan värivaihto" : "Käynnistä taustan värivaihto"}
+                >
+                    {isAnimationRunning ? '◼ Pysäytä tausta' : '▶ Käynnistä tausta'}
+                </button>
+            </div>
+        </footer>
+    );
 };
     
+    // Poistettu vanhat kiinteät tyylit ja käsittelijät, koska nappi siirrettiin footeriin.
 
     const isAdmin = localStorage.getItem("accessLevelId") === "1";
 
     return (
         <Router>
             <div className="App d-flex flex-column min-vh-100">
-              <div className="background-container">
+                
+                {/* POISTETTU: Vanha kiinteä nappi */}
+                
+                <div className="background-container">
                     {gradients.map((g, i) => (
                         <div
                             key={i}
@@ -186,30 +219,30 @@ const Footer = () => {
                     ))}
                     {/* Liikkuva valoefekti */}
                    <div className="particles">
-      {Array.from({ length: 50 }).map((_, i) => {
-        const startX = Math.random();
-        const startY = Math.random();
-        const endX = Math.random();
-        const endY = Math.random();
-        const duration = 5 + Math.random() * 10;
+        {Array.from({ length: 50 }).map((_, i) => {
+            const startX = Math.random();
+            const startY = Math.random();
+            const endX = Math.random();
+            const endY = Math.random();
+            const duration = 5 + Math.random() * 10;
 
-        return (
-          <div
-            key={i}
-            className="particle"
-            style={{
-              '--rand-x': startX,
-              '--rand-y': startY,
-              '--rand-x-end': endX,
-              '--rand-y-end': endY,
-              animationDuration: `${duration}s`,
-              animationDelay: `${Math.random() * 5}s`
-            }}
-          />
-        );
-      })}
+            return (
+                <div
+                    key={i}
+                    className="particle"
+                    style={{
+                        '--rand-x': startX,
+                        '--rand-y': startY,
+                        '--rand-x-end': endX,
+                        '--rand-y-end': endY,
+                        animationDuration: `${duration}s`,
+                        animationDelay: `${Math.random() * 5}s`
+                    }}
+                />
+            );
+        })}
     </div>
-  </div>
+    </div>
                 {/* Navigointipalkki näkyy aina */}
                 <Navbar expand="lg" className="shadow navbar-custom">
                     <div className="container-fluid">
@@ -266,7 +299,7 @@ const Footer = () => {
                             <Route path="/admin" element={isAdmin ? <AdminDashboard /> : <Navigate to="/login" replace />} />
 
                             {/* Admin subpages */}
-                            <Route path="/admin/paymentmethods" element={isAdmin ? <PaymentMethodList setMessage={setMessage} setIsPositive={setIsPositive} setShowMessage={setShowMessage} /> : <Navigate to="/login" replace />} />                     
+                            <Route path="/admin/paymentmethods" element={isAdmin ? <PaymentMethodList setMessage={setMessage} setIsPositive={setIsPositive} setShowMessage={setShowMessage} /> : <Navigate to="/login" replace />} /> 					 
                             <Route path="/admin/orders" element={isAdmin ? <OrderList setMessage={setMessage} setIsPositive={setIsPositive} setShowMessage={setShowMessage} /> : <Navigate to="/login" replace />} />
                             <Route path="/admin/orders/add" element={isAdmin ? <OrderAdd setMessage={setMessage} setIsPositive={setIsPositive} setShowMessage={setShowMessage} /> : <Navigate to="/login" replace />} />
                             <Route path="/admin/orders/edit/:id" element={isAdmin ? <OrderEdit setMessage={setMessage} setIsPositive={setIsPositive} setShowMessage={setShowMessage} /> : <Navigate to="/login" replace />} />
@@ -278,7 +311,11 @@ const Footer = () => {
                         </Routes>
                     </div>
                 </main>
-                <Footer />
+                {/* Välitetään tila ja sen muokkausfunktio Footerille */}
+                <Footer 
+                    isAnimationRunning={isAnimationRunning} 
+                    setIsAnimationRunning={setIsAnimationRunning} 
+                />
 
             </div>
         </Router>
