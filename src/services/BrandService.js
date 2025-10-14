@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = 'https://localhost:7234/api/brands'; // backendin route brandille
+const baseUrl = 'https://golfstore20251008143256-c0gbbtahgda8bdf5.northeurope-01.azurewebsites.net/api/brands'; // backendin route brandille
 
 let token = null;
 

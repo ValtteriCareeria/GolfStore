@@ -29,6 +29,7 @@ import Terms from "./Terms";
 import Contact from "./Contact";
 import DeliveryInfo from './DeliveryInfo';
 import ChangePassword from "./ChangePassword";
+import EditAddress from "./EditAddress";
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -106,7 +107,7 @@ function App() {
 
     // Logout-napin tapahtumankäsittelijä
     const logout = () => {
-    // HUOM: Käytetään kustomoitua modaalia, sillä window.confirm() ei toimi Canvas-ympäristössä
+    
     const confirmLogout = window.confirm("Haluatko varmasti kirjautua ulos?");
     if (confirmLogout) {
         localStorage.clear();
@@ -199,7 +200,6 @@ const Footer = ({ isAnimationRunning, setIsAnimationRunning }) => {
     );
 };
     
-    // Poistettu vanhat kiinteät tyylit ja käsittelijät, koska nappi siirrettiin footeriin.
 
     const isAdmin = localStorage.getItem("accessLevelId") === "1";
 
@@ -290,7 +290,7 @@ const Footer = ({ isAnimationRunning, setIsAnimationRunning }) => {
                             <Route path="/contact" element={<Contact />} />
                             <Route path="/delivery" element={<DeliveryInfo />} />
                             <Route path="/changepassword" element={<ChangePassword setMessage={setMessage} setIsPositive={setIsPositive} setShowMessage={setShowMessage} />} />
-
+                            <Route path="/editaddress/:id" element={<EditAddress setMessage={setMessage} setIsPositive={setIsPositive} setShowMessage={setShowMessage} />} />
 
                             {/* Users only for admin */}
                             <Route path="/users" element={isAdmin ? <UserList setMessage={setMessage} setIsPositive={setIsPositive} setShowMessage={setShowMessage} /> : <Navigate to="/login" replace />} />

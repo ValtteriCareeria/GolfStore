@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // Asetetaan perusosoite Axiosin käyttöä varten
-const baseUrl = "https://localhost:7234/api/authentication";
+const baseUrl = "https://golfstore20251008143256-c0gbbtahgda8bdf5.northeurope-01.azurewebsites.net/api/authentication";
 
 // Muutettu käyttämään Axiosia fetch-funktion sijaan
 const authenticate = (userForAuth) => {

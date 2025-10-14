@@ -7,36 +7,51 @@ const ChangePassword = ({ setMessage, setIsPositive, setShowMessage }) => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
+  // Haetaan nykyisen käyttäjän ID localStorage-muistista ja muunnetaan numeroksi.
   const userId = parseInt(localStorage.getItem("userId"));
 
+  // Laskettu arvo tarkistamaan täsmäävätkö salasanat.
   const passwordsMatch = newPassword === confirmPassword;
 
+  // Käsittelijä salasanan vaihtolomakkeen lähetykselle
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  if (newPassword !== confirmPassword) {
-    setMessage("Uusi salasana ja vahvistus eivät täsmää.");
-    setIsPositive(false);
-    setShowMessage(true);
-    return;
-  }
+    // Estetään lomakkeen oletuslähetys (sivun uudelleenlataus)
+    e.preventDefault();
+    
+    // Tarkistetaan ensin, että uusi salasana ja vahvistus täsmäävät.
+    if (newPassword !== confirmPassword) {
+      // Jos eivät täsmää, näytetään virheviesti ja keskeytetään.
+      setMessage("Uusi salasana ja vahvistus eivät täsmää.");
+      setIsPositive(false);
+      setShowMessage(true);
+      return;
+    }
 
-  try {
-    const user = await UserService.getById(userId);
-    user.password = md5(newPassword);
+    try {
+      // 1. Haetaan nykyiset käyttäjätiedot palvelusta ID:n perusteella.
+      const user = await UserService.getById(userId);
+      
+      // 2. Päivitetään käyttäjäobjektin salasana MD5-tiivisteenä.
+      user.password = md5(newPassword);
 
-    await UserService.update(user);
+      // 3. Kutsutaan palvelua päivittämään käyttäjän tiedot (uusi salasana) kantaan.
+      await UserService.update(user);
 
-    setMessage("Salasana vaihdettu onnistuneesti!");
-    setIsPositive(true);
-    setShowMessage(true);
-    navigate("/profile");
-  } catch (error) {
-    const errMsg = error.response?.data?.message || JSON.stringify(error.response?.data) || "Virhe salasanan vaihdossa.";
-    setMessage(errMsg);
-    setIsPositive(false);
-    setShowMessage(true);
-  }
-};
+      // Onnistunut päivitys: näytetään positiivinen viesti.
+      setMessage("Salasana vaihdettu onnistuneesti!");
+      setIsPositive(true);
+      setShowMessage(true);
+      
+      // Navigoidaan takaisin profiilisivulle.
+      navigate("/profile");
+    } catch (error) {
+      // Virheen käsittely API-kutsussa. Haetaan virheviesti vastauksesta.
+      const errMsg = error.response?.data?.message || JSON.stringify(error.response?.data) || "Virhe salasanan vaihdossa.";
+      setMessage(errMsg);
+      setIsPositive(false);
+      setShowMessage(true);
+    }
+  };
 
   return (
     <div className="edit-container">
@@ -58,6 +73,7 @@ const ChangePassword = ({ setMessage, setIsPositive, setShowMessage }) => {
           required
           className="edit-input"
         />
+        {/* Näytetään virheteksti, jos salasanat eivät täsmää ja toinen kenttä on täytetty. */}
         {!passwordsMatch && confirmPassword.length > 0 && (
           <p className="fade-in error-text">Salasanat eivät täsmää!</p>
         )}

@@ -1,0 +1,57 @@
+/* Perus gradient-tausta kuten tuotesivulla */
+.profile-page {
+  background: linear-gradient(135deg, #203a43, #2c5364, #0f2027);
+  min-height: 100vh;
+  padding: 30px;
+  color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Kortti-tyyli tiedoille */
+.profile-card {
+  background: linear-gradient(135deg, #203a43, #2c5364, #0f2027);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px rgba(0, 255, 200, 0.3);
+}
+
+.profile-card h3 {
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+  color: #fff;
+  text-shadow: 0 0 6px rgba(0, 255, 200, 0.5);
+}
+
+/* Osoite-section */
+.address-section p {
+  margin: 5px 0;
+}
+
+/* Napit */
+.btn-submit, .btn-back {
+  background: rgba(255,255,255,0.1);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-submit:hover, .btn-back:hover {
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px rgba(0, 255, 200, 0.5);
+}
+
+/* Nappien container */
+.myproducts-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
