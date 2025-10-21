@@ -77,7 +77,7 @@ const BrandManagement = () => {
         {/* Takaisin-nappi, joka käyttää useNavigate-hookia */}
         <button
           className="brandmanagement-btn-back"
-          onClick={() => navigate(-1)}
+          onClick={() => navigate("/admin")}
         >
           Takaisin
         </button>

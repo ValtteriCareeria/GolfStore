@@ -85,7 +85,7 @@ const DeliveryOptionList = ({ setMessage, setIsPositive, setShowMessage }) => {
         </button>
         <button
           className="deliveryoptions-btn-back"
-          onClick={() => navigate(-1)}
+          onClick={() => navigate("/admin")}
         >
           Takaisin
         </button>

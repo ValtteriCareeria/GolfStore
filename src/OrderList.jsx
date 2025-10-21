@@ -66,7 +66,7 @@ const OrderList = ({ setMessage, setIsPositive, setShowMessage }) => {
         </button>
         <button 
           className="orders-btn-back" 
-          onClick={() => navigate(-1)}
+          onClick={() => navigate("/admin")}
         >
           ⬅ Takaisin
         </button>
