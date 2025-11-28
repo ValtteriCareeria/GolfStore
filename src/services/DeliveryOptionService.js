@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const baseUrl = "https://golfstore20251008143256-c0gbbtahgda8bdf5.northeurope-01.azurewebsites.net/api/deliveryOptions";
+//const baseUrl = "https://localhost:7234/api/deliveryOptions";
 
 let token = null;
 

@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const baseUrl = "https://golfstore20251008143256-c0gbbtahgda8bdf5.northeurope-01.azurewebsites.net/api/products"
+//const baseUrl = "https://localhost:7234/api/products";
 
 let token = null
 
@@ -25,6 +26,15 @@ const create = newProduct => {
     return axios.post(baseUrl, newProduct, config)
 }
 
+// HUOM! Käytä tätä poiston sijaan, kun käytät soft delete -logiikkaa backendissä!
+const setSold = id => { 
+    const config = {
+        headers: { Authorization: token },
+    }
+    // Kutsutaan uutta setsold-päätepistettä, joka asettaa InventoryCount = 0
+    return axios.put(`${baseUrl}/setsold/${id}`, null, config) 
+}
+
 const remove = id => {
     const config = {
         headers: { Authorization: token },
@@ -47,4 +57,4 @@ const getById = (id) => {
 };
 
 
-export default { getAll, getById, create, update, remove, setToken }
+export default { getAll, getById, create, update, remove, setToken, setSold }

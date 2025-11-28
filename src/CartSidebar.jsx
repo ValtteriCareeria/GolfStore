@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Offcanvas, Button, Badge, Form } from "react-bootstrap";
+import { Offcanvas } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 import './CartSidebar.css';
@@ -19,34 +19,26 @@ const CartSidebar = ({ cart, setCart }) => {
     localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
-  // Muuta määrää
-  const changeQuantity = (productId, quantity) => {
-    const updatedCart = cart.map(item =>
-      item.productId === productId ? { ...item, quantity: Number(quantity) } : item
-    );
-    setCart(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-  };
-
-  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const cartQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+  // Lasketaan yhteishinta ja tuotteiden määrä
+  const total = cart.reduce((sum, item) => sum + item.price, 0);
+  const cartCount = cart.length;
 
   useEffect(() => {
-    if (cartQuantity > 0) {
+    if (cartCount > 0) {
       setAnimateBadge(true);
       const timer = setTimeout(() => setAnimateBadge(false), 300);
       return () => clearTimeout(timer);
     }
-  }, [cartQuantity]);
+  }, [cartCount]);
 
   return (
     <>
       {/* Ostoskori-ikoni */}
       <button className="mycart-toggle" onClick={handleShow}>
         <FaShoppingCart size={24} />
-        {cartQuantity > 0 && (
+        {cartCount > 0 && (
           <span className={`mycart-badge ${animateBadge ? 'animate' : ''}`}>
-            {cartQuantity}
+            {cartCount}
           </span>
         )}
       </button>
@@ -66,22 +58,15 @@ const CartSidebar = ({ cart, setCart }) => {
                   <li key={item.productId} className="mycart-item">
                     <div className="mycart-item-info">
                       <strong>{item.title}</strong>
-                      <span>{item.price.toFixed(2)} €/kpl</span>
+                      <span>{item.price.toFixed(2)} €</span>
                     </div>
-                    <div className="mycart-item-actions">
-                      <Form.Control
-                        type="number"
-                        value={item.quantity}
-                        min="1"
-                        className="mycart-quantity"
-                        onChange={(e) => changeQuantity(item.productId, e.target.value)}
-                      />
-                      <button className="mycart-remove" onClick={() => removeItem(item.productId)}>×</button>
-                    </div>
+                    <button className="mycart-remove" onClick={() => removeItem(item.productId)}>×</button>
                   </li>
                 ))}
               </ul>
+
               <h5 className="mycart-total">Yhteensä: {total.toFixed(2)} €</h5>
+
               <button
                 className="mycart-btn"
                 onClick={() => {
@@ -91,6 +76,7 @@ const CartSidebar = ({ cart, setCart }) => {
               >
                 Näytä koko ostoskori
               </button>
+
               <button
                 className="mycart-btn mycart-order-btn"
                 onClick={() => {

@@ -1,39 +1,35 @@
 import React, { useState, useEffect } from 'react';
-import ProductService from './services/Product'; // Palvelu tuotteen päivitykseen
-import BrandService from './services/BrandService'; // Palvelu brändien hakuun
-import ModelService from './services/ModelService'; // Palvelu mallien hakuun
-import './ProductEdit.css' // Komponentin tyylit
-import NoAccessPopup from './NoAccessPopup'; // Popup-komponentti pääsykieltoa varten
+import ProductService from './services/Product';
+import BrandService from './services/BrandService';
+import ModelService from './services/ModelService';
+import './ProductEdit.css'
+import NoAccessPopup from './NoAccessPopup';
 
-// ProductEdit-komponentti tuotetietojen muokkaamiseen
 const ProductEdit = ({
-    setMuokkaustila, // Funktio muokkaustilan sulkemiseen
-    muokattavaProduct, // Muokattava tuote (saapuu propseina ProductLististä)
-    setIsPositive, // Funktio viestin värin asettamiseen
-    setMessage, // Funktio viestin sisällön asettamiseen
-    setShowMessage, // Funktio viestin näkyvyyden hallintaan
-    onProductUpdated // Funktio tuotelistauksen päivittämiseen onnistuneen tallennuksen jälkeen
+    setMuokkaustila,
+    muokattavaProduct,
+    setIsPositive,
+    setMessage,
+    setShowMessage,
+    onProductUpdated
 }) => {
-    // Tila lomakkeen syötteitä varten, alustetaan muokattavan tuotteen tiedoilla
+
     const [product, setProduct] = useState({ ...muokattavaProduct });
-    // Tilat käyttöoikeuksien ja popupin hallintaan
     const [hasPermission, setHasPermission] = useState(true);
     const [showPopup, setShowPopup] = useState(false);
 
-    // Tilat brändi- ja mallidatalle
     const [brands, setBrands] = useState([]);
     const [models, setModels] = useState([]);
-    const [filteredModels, setFilteredModels] = useState([]); // Valitun brändin mukaiset mallit
-    const [loading, setLoading] = useState(true); // Tilannekuva tietojen lataamisesta
+    const [filteredModels, setFilteredModels] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-    // **useEffect 1: Käyttöoikeuksien tarkistus**
-    // Suoritetaan, kun muokattava tuote muuttuu.
-    // Alustaa tuotteen tilan ja tarkistaa, onko käyttäjällä oikeus muokata tuotetta (oma tuote tai admin)
+    // Tarkista omistus & admin
     useEffect(() => {
         setProduct({
             ...muokattavaProduct,
             BrandID: muokattavaProduct.brand?.brandID || '',
-            ModelID: muokattavaProduct.model?.modelID || ''
+            ModelID: muokattavaProduct.model?.modelID || '',
+            inventoryCount: muokattavaProduct.inventoryCount
         });
 
         const loggedInUserId = Number(localStorage.getItem('userId'));
@@ -45,9 +41,7 @@ const ProductEdit = ({
         }
     }, [muokattavaProduct]);
 
-    // **useEffect 2: Brändien ja mallien haku**
-    // Suoritetaan kerran komponentin latautuessa.
-    // Hakee kaikki brändit ja mallit palveluista lomakkeen dropdown-valikoita varten.
+    // Hae brändit ja mallit
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -55,18 +49,15 @@ const ProductEdit = ({
                 const modelData = await ModelService.getAll();
                 setBrands(brandData || []);
                 setModels(modelData || []);
-                setLoading(false);
             } catch (err) {
                 console.error("Virhe haettaessa brandejä/malleja:", err);
-                setLoading(false);
             }
+            setLoading(false);
         };
         fetchData();
     }, []);
 
-    // **useEffect 3: Mallien suodatus**
-    // Suoritetaan, kun valittu BrandID tai mallilista muuttuu.
-    // Suodattaa mallit, jotta näytetään vain valittuun brändiin kuuluvat mallit.
+    // Suodata mallit brändin mukaan
     useEffect(() => {
         if (product.BrandID) {
             const selectedBrandId = parseInt(product.BrandID);
@@ -77,10 +68,9 @@ const ProductEdit = ({
         }
     }, [product.BrandID, models]);
 
-    // Käsittelijä lomakkeen syötekenttien muutoksille
+    // Lomakkeen syötteiden muutokset
     const handleInputChange = (event) => {
         const { name, value } = event.target;
-        // Jos brändi vaihtuu, nollaa samalla mallin valinta
         if (name === 'BrandID') {
             setProduct({ ...product, [name]: value, ModelID: '' });
         } else {
@@ -88,13 +78,12 @@ const ProductEdit = ({
         }
     };
 
-    // Lomakkeen lähetyskäsittelijä
+    // Lomakkeen lähetys
     const handleSubmit = async (event) => {
         event.preventDefault();
-        if (!hasPermission) return; // Estä lähetys, jos ei ole oikeuksia
+        if (!hasPermission) return;
 
         try {
-            // Luodaan payload päivitystä varten
             const payload = {
                 productId: product.productId,
                 userId: product.userId,
@@ -103,23 +92,20 @@ const ProductEdit = ({
                 price: product.price,
                 imageUrl: product.imageUrl,
                 brandID: Number(product.BrandID) || null,
-                modelID: Number(product.ModelID) || null
+                modelID: Number(product.ModelID) || null,
+                inventoryCount: Number(product.inventoryCount) // ⬅ LISÄTTY
             };
 
-            // Kutsutaan palvelua tuotteen päivittämiseksi
             await ProductService.update(payload);
-            
-            // Päivitetään tuotelista onnistuneesti
+
             onProductUpdated(payload);
-            
-            // Näytetään onnistumisviesti ja suljetaan muokkaustila
+
             setMessage('Tuote päivitetty onnistuneesti!');
             setIsPositive(true);
             setShowMessage(true);
             setTimeout(() => setShowMessage(false), 5000);
             setMuokkaustila(false);
         } catch (error) {
-            // Käsittele virhe ja näytä virheviesti
             setMessage('Tuotteen päivitys epäonnistui.');
             setIsPositive(false);
             setShowMessage(true);
@@ -128,15 +114,15 @@ const ProductEdit = ({
         }
     };
 
-    // Näytä latausilmoitus, kun tietoja haetaan
     if (loading) {
         return <div className="editpage-loading">Ladataan tietoja...</div>;
     }
 
-    // Komponentin varsinainen renderöinti
+    const accessLevelId = Number(localStorage.getItem('accessLevelId'));
+
     return (
         <div className="editpage-container">
-            {/* Pääsykielto-popup (renderöidään ehdollisesti) */}
+
             {showPopup && (
                 <NoAccessPopup
                     show={showPopup}
@@ -147,14 +133,12 @@ const ProductEdit = ({
                 />
             )}
 
-            {/* Muokkauslomake (renderöidään vain, jos on oikeudet) */}
             {hasPermission && (
                 <>
                     <h2 className="editpage-title">Muokkaa tuotetta</h2>
+
                     <form onSubmit={handleSubmit} className="editpage-form">
-                        
-                        {/* Lomakkeen kentät: Nimi, Kuvaus, Hinta, Kuvan URL, Merkki, Malli */}
-                        
+
                         <div className="editpage-form-group">
                             <label htmlFor="title">Tuotteen nimi</label>
                             <input
@@ -202,8 +186,7 @@ const ProductEdit = ({
                         </div>
 
                         <div className="editpage-form-group">
-                            <label htmlFor="brandId">Valitse merkki</label>
-                            {/* Brändin valintalisto. Valinta päivittää suodatetut mallit */}
+                            <label htmlFor="BrandID">Valitse merkki</label>
                             <select
                                 id="BrandID"
                                 name="BrandID"
@@ -211,15 +194,14 @@ const ProductEdit = ({
                                 onChange={handleInputChange}
                             >
                                 <option value="">-- Valitse merkki --</option>
-                                {Array.isArray(brands) && brands.map(b => (
+                                {brands.map(b => (
                                     <option key={b.brandID} value={b.brandID}>{b.name}</option>
                                 ))}
                             </select>
                         </div>
 
                         <div className="editpage-form-group">
-                            <label htmlFor="modelId">Mailan malli</label>
-                            {/* Mallin valintalista. Sisältö riippuu valitusta brändistä */}
+                            <label htmlFor="ModelID">Mailan malli</label>
                             <select
                                 id="ModelID"
                                 name="ModelID"
@@ -227,15 +209,30 @@ const ProductEdit = ({
                                 onChange={handleInputChange}
                             >
                                 <option value="">-- Valitse malli --</option>
-                                {Array.isArray(filteredModels) && filteredModels.map(m => (
+                                {filteredModels.map(m => (
                                     <option key={m.modelID} value={m.modelID}>{m.name}</option>
                                 ))}
                             </select>
                         </div>
 
-                        {/* Tallenna ja Peruuta painikkeet */}
+                        {/* ⭐ InventoryCount vain adminille ⭐ */}
+                        {accessLevelId === 1 && (
+                            <div className="editpage-form-group">
+                                <label htmlFor="inventoryCount">Tuotteen näkyvyys</label>
+                                <select
+                                    id="inventoryCount"
+                                    name="inventoryCount"
+                                    value={product.inventoryCount}
+                                    onChange={handleInputChange}
+                                >
+                                    <option value={1}>Näkyvissä (varastossa)</option>
+                                    <option value={0}>Piilotettu / Loppu</option>
+                                </select>
+                            </div>
+                        )}
+
                         <div className="editpage-buttons">
-                            <button type="submit" className="editpage-btn-save"> Tallenna</button>
+                            <button type="submit" className="editpage-btn-save">💾 Tallenna</button>
                             <button
                                 type="button"
                                 className="editpage-btn-cancel"
@@ -244,6 +241,7 @@ const ProductEdit = ({
                                 ✖ Peruuta
                             </button>
                         </div>
+
                     </form>
                 </>
             )}

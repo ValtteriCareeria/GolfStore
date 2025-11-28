@@ -252,7 +252,7 @@ const Footer = ({ isAnimationRunning, setIsAnimationRunning }) => {
                         <Nav className="ms-auto">
                             <Nav.Link as={NavLink} to="/" end>Etusivu</Nav.Link>
                             <Nav.Link as={NavLink} to="/products" end>Tuotteet</Nav.Link>
-                            <Nav.Link as={NavLink} to="/register">Rekisteröidy</Nav.Link>
+                            <Nav.Link as={NavLink} to="/register">Rekisteröidy</Nav.Link>                          
                             {loggedInUser && <Nav.Link as={NavLink} to="/profile">Profiili</Nav.Link>}
                             {isAdmin && <>
                             <Nav.Link as={NavLink} to="/users">Users</Nav.Link>
@@ -274,7 +274,8 @@ const Footer = ({ isAnimationRunning, setIsAnimationRunning }) => {
                         {/* Renderoidaan reitit */}
                         <Routes>
                             <Route path="/" element={<HomePage />} />
-                            <Route path="/products" element={<ProductList cart={cart} setCart={setCart} setMessage={setMessage} setIsPositive={setIsPositive} setShowMessage={setShowMessage} />} />
+                            <Route path="/products" element={<ProductList cart={cart} setCart={setCart} setMessage={setMessage} setIsPositive={setIsPositive} setShowMessage={setShowMessage} />} />                        
+
                             <Route path="/login" element={<Login setMessage={setMessage} setIsPositive={setIsPositive} setShowMessage={setShowMessage} setLoggedInUser={setLoggedInUser} />} />
                             <Route path="/cart" element={<Cart cart={cart} setCart={setCart} />} />
                             
