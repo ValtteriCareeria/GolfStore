@@ -232,7 +232,7 @@ const ProductEdit = ({
                         )}
 
                         <div className="editpage-buttons">
-                            <button type="submit" className="editpage-btn-save">💾 Tallenna</button>
+                            <button type="submit" className="editpage-btn-save">Tallenna</button>
                             <button
                                 type="button"
                                 className="editpage-btn-cancel"

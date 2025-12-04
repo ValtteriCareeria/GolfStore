@@ -47,6 +47,8 @@ const Login = ({ setIsPositive, setMessage, setShowMessage, setLoggedInUser }) =
 
                     // Piilotetaan viesti 5 sekunnin kuluttua
                     setTimeout(() => setShowMessage(false), 5000);
+
+                    navigate('/');
                 }
             })
             .catch(error => {

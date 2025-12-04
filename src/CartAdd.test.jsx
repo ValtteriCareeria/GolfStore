@@ -86,7 +86,7 @@ describe("CartAdd component", () => {
       expect(addressService.create).toHaveBeenCalledTimes(1);
       expect(orderService.create).toHaveBeenCalledTimes(1);
       expect(setCart).toHaveBeenCalledWith([]);
-      expect(setMessage).toHaveBeenCalledWith("Tilaus onnistui!");
+      expect(setMessage).toHaveBeenCalledWith("Tilaus onnistui! Tuotteet on nyt poistettu myyntilistalta.");
       expect(setIsPositive).toHaveBeenCalledWith(true);
       expect(setShowMessage).toHaveBeenCalledWith(true);
     });
